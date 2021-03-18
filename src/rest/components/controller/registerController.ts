@@ -136,57 +136,57 @@ export class registerController {
     //     }
     // }
 
-    // public async Login(request: Request, response: Response, next: NextFunction): Promise<Response | void> {
-    //     try
-    //     {
-    //         const userName = request.body.username;
-    //         const pass = request.body.password;
+    public async Login(request: Request, response: Response, next: NextFunction): Promise<Response | void> {
+        try
+        {
+            const userName = request.body.username;
+            const pass = request.body.password;
 
-    //         if(request.body.username && request.body.password){
-    //             const user = await entityManager
+            if(request.body.username && request.body.password){
+                const user = await entityManager
                 
-    //             .createQueryBuilder()
-    //             .select("user")
-    //             .from(register, "user")
-    //             .where("user.username = :username", { username: userName })
-    //             //  .andWhere("user.password = :password", { password: pass })
-    //             .getOne();
-    //             if(user != null){
-    //                 if (Common.decrypt(user.password) == request.body.password) {
+                .createQueryBuilder()
+                .select("user")
+                .from(register, "user")
+                .where("user.username = :username", { username: userName })
+                //  .andWhere("user.password = :password", { password: pass })
+                .getOne();
+                if(user != null){
+                    if (Common.decrypt(user.password) == request.body.password) {
                        
                         
-    //                     response.status(200).json({
-    //                         "status":"true",
-    //                         "level":"200",
-    //                         "message": "Login success",
-    //                         "Token": Common.Token(120),
-    //                         });
-    //                 }
-    //                 else{
-    //                     response.status(201).json({
-    //                         "status":"true",
-    //                         "message": "Login failed"
-    //                     });
-    //                 }
+                        response.status(200).json({
+                            "status":"true",
+                            "level":"200",
+                            "message": "Login success",
+                            "Token": Common.Token(120),
+                            });
+                    }
+                    else{
+                        response.status(201).json({
+                            "status":"true",
+                            "message": "Login failed"
+                        });
+                    }
                     
-    //             }else{
-    //                 response.status(202).json({
-    //                     "status":"true",
-    //                     "message": "Login failed"
-    //                 });
-    //             }
-    //         }
-    //         else{
-    //             response.status(201).json({
-    //                 "message": "decreption failed"
-    //             });
-    //         }
-    //     }
-    //     catch(err){
-    //         response.status(400).json({
-    //             "status":"true",
-    //             "message": "decreption failed"
-    //         });
-    //     }
-    // }
+                }else{
+                    response.status(202).json({
+                        "status":"true",
+                        "message": "Login failed"
+                    });
+                }
+            }
+            else{
+                response.status(201).json({
+                    "message": "decreption failed"
+                });
+            }
+        }
+        catch(err){
+            response.status(400).json({
+                "status":"true",
+                "message": "decreption failed"
+            });
+        }
+    }
 }
