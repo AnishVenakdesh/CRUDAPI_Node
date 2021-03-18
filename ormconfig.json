@@ -1,0 +1,25 @@
+{ "name": "default", 
+   "type": "mysql",
+   "host": "localhost",
+   "port": 3306,
+   "username": "root",
+   "password": "",
+   "database": "user",
+   "synchronize": true,
+   "logging": false,
+   "entities": [
+      
+      "src/rest/components/*/*.ts"
+   ],
+   "migrations": [
+      "src/rest/components/migration/**/*.ts"
+   ],
+   "subscribers": [
+      "src/rest/components/subscriber/**/*.ts"
+   ],
+   "cli": {
+      "entitiesDir": "src/rest/components/entity",
+      "migrationsDir": "src/rest/components/migration",
+      "subscribersDir": "src/rest/components/subscriber"
+   }
+}
